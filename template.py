@@ -53,3 +53,6 @@ class Resume(collections.UserDict):
                                       "endDate": end_date,
                                       "summary": summary,
                                       "highlights": highlights})
+
+    def remove_work(self, index: int):
+        del self["work"][index]
