@@ -5,6 +5,7 @@ as well as classes for creating resume elements
 """
 
 import collections
+import datetime
 import json
 
 
@@ -39,3 +40,16 @@ class Resume(collections.UserDict):
     def save(self):
         with open(self.location, 'w') as out:
             out.write(json.JSONEncoder().encode(self.data))
+
+    def add_work(self, company: str, position: str, website: str,
+                 summary: str, highlights: list, start_date: datetime.date, end_date: datetime.date=None):
+        if end_date:
+            end_date = end_date.isoformat()
+
+        self["work"].append({"company": company,
+                                      "position": position,
+                                      "website": website,
+                                      "startDate": start_date.isoformat(),
+                                      "endDate": end_date,
+                                      "summary": summary,
+                                      "highlights": highlights})
