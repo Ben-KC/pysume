@@ -15,15 +15,15 @@ class Resume(collections.UserDict):
                  publications: list=[], skills: list=[], languages: list=[],
                  interests: list=[], references: list=[]):
         super().__init__({'basics': basics,
-                               'work': work, 
-			       'volunteer': volunteer,
-                               'education': education, 
-                               'awards': awards,
-                               'publications': publications, 
-                               'skills': skills,
-                               'languages': languages, 
-                               'interests': interests,
-                               'references': references})
+                          'work': work, 
+                          'volunteer': volunteer,
+                          'education': education, 
+                          'awards': awards,
+                          'publications': publications, 
+                          'skills': skills,
+                          'languages': languages, 
+                          'interests': interests,
+                          'references': references})
         self.location = location
 
     categories = ["basics", "work", "volunteer", "education", "awards",
@@ -47,12 +47,20 @@ class Resume(collections.UserDict):
             end_date = end_date.isoformat()
 
         self["work"].append({"company": company,
-                                      "position": position,
-                                      "website": website,
-                                      "startDate": start_date.isoformat(),
-                                      "endDate": end_date,
-                                      "summary": summary,
-                                      "highlights": highlights})
+                             "position": position,
+                             "website": website,
+                             "startDate": start_date.isoformat(),
+                             "endDate": end_date,
+                             "summary": summary,
+                             "highlights": highlights})
 
     def remove_work(self, index: int):
         del self["work"][index]
+
+    def add_profile(self, network: str, username: str, url: str):
+        self["basics"]["profiles"].append({"network": network,
+                                           "username": username,
+                                           "url": url})
+
+    def remove_profile(self, index: int):
+        del self["basics"]["profiles"][index]
