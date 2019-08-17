@@ -42,7 +42,8 @@ class Resume(collections.UserDict):
             out.write(json.JSONEncoder().encode(self.data))
 
     def add_work(self, company: str, position: str, website: str,
-                 summary: str, highlights: list, start_date: datetime.date, end_date: datetime.date=None):
+                 summary: str, highlights: list, start_date: datetime.date,
+                 end_date: datetime.date=None):
         if end_date:
             end_date = end_date.isoformat()
 
@@ -64,3 +65,21 @@ class Resume(collections.UserDict):
 
     def remove_profile(self, index: int):
         del self["basics"]["profiles"][index]
+
+    def add_volunteer(self, organization: str, position: str, website: str,
+                      summary: str, highlights: list,
+                      start_date: datetime.date, 
+                      end_date: datetime.date=None):
+        if end_date:
+            end_date = end_date.isoformat()
+
+        self["volunteer"].append({"organization": organization,
+                                  "position": position,
+                                  "website": website,
+                                  "startDate": start_date.isoformat(),
+                                  "endDate": end_date,
+                                  "summary": summary,
+                                  "highlights": highlights})
+
+    def remove_volunteer(self, index: int):
+        del self["volunteer"][index]
