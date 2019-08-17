@@ -121,3 +121,11 @@ class Resume(collections.UserDict):
 
     def remove_publication(self, index):
         del self["publications"][index]
+
+    def add_skill(self, name: str, level: str, keywords: list):
+        self["skills"].append({"name": name,
+                               "level": level,
+                               "keywords": keywords})
+
+    def remove_skill(self, index):
+        del self["skills"][index]
