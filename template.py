@@ -143,3 +143,10 @@ class Resume(collections.UserDict):
 
     def remove_interest(self, index):
         del self["interests"][index]
+
+    def add_reference(self, name: str, reference: str):
+        self["references"].append({"name": name,
+                                   "reference": reference})
+
+    def remove_reference(self, index):
+        del self["references"][index]
