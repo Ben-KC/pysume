@@ -100,3 +100,12 @@ class Resume(collections.UserDict):
 
     def remove_education(self, index: int):
         del self["education"][index]
+
+    def add_award(self, title: str, date: str, awarder: str, summary: str):
+        self["awards"].append({"title": title,
+                               "date": date.isoformat(),
+                               "awarder": awarder,
+                               "summary": summary})
+
+    def remove_award(self, index):
+        del self["awards"][index]
