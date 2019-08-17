@@ -83,3 +83,20 @@ class Resume(collections.UserDict):
 
     def remove_volunteer(self, index: int):
         del self["volunteer"][index]
+
+    def add_education(self, instution: str, area: str, study_type: str,
+                      gpa: str, courses: list, start_date: datetime.date,
+                      end_date: datetime.date=None):
+        if end_date:
+            end_date = end_date.isoformat()
+
+        self["education"].append({"instution": instution,
+                                  "area": area,
+                                  "studyType": study_type,
+                                  "gpa": gpa,
+                                  "startDate": start_date.isoformat(),
+                                  "endDate": end_date,
+                                  "courses": courses})
+
+    def remove_education(self, index: int):
+        del self["education"][index]
