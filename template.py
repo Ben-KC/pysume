@@ -109,3 +109,15 @@ class Resume(collections.UserDict):
 
     def remove_award(self, index):
         del self["awards"][index]
+
+    def add_publication(self, name: str, publisher: str,
+                        release_date: datetime.date, website: str,
+                        summary: str):
+        self["publications"].append({"name": name,
+                                     "publisher": publisher,
+                                     "releaseDate": release_date.isoformat(),
+                                     "website": website,
+                                     "summary": summary})
+
+    def remove_publication(self, index):
+        del self["publications"][index]
