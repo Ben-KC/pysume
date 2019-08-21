@@ -239,3 +239,7 @@ class Resume(collections.UserDict):
 
     def remove_reference(self, index: int):
         del self["references"][index]
+
+    def update_reference(self, index: int, name: str, reference: str):
+        self["references"][index].update({"name": name,
+                                          "reference": reference})
