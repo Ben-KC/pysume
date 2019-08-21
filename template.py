@@ -187,6 +187,15 @@ class Resume(collections.UserDict):
     def remove_publication(self, index: int):
         del self["publications"][index]
 
+    def update_publication(self, index: int, name: str, publisher: str,
+                        release_date: datetime.date, website: str,
+                        summary: str):
+        self["publications"][index].update({"name": name,
+                                            "publisher": publisher,
+                                            "releaseDate": release_date.isoformat(),
+                                            "website": website,
+                                            "summary": summary})
+
     # Skill section
     def add_skill(self, name: str, level: str, keywords: list):
         self["skills"].append({"name": name,
