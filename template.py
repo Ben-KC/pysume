@@ -118,13 +118,13 @@ class Resume(collections.UserDict):
                                          "highlights": highlights})
 
     # Education section
-    def add_education(self, instution: str, area: str, study_type: str,
+    def add_education(self, institution: str, area: str, study_type: str,
                       gpa: str, courses: list, start_date: datetime.date,
                       end_date: datetime.date=None):
         if end_date:
             end_date = end_date.isoformat()
 
-        self["education"].append({"instution": instution,
+        self["education"].append({"institution": institution,
                                   "area": area,
                                   "studyType": study_type,
                                   "gpa": gpa,
@@ -134,6 +134,22 @@ class Resume(collections.UserDict):
 
     def remove_education(self, index: int):
         del self["education"][index]
+
+    def update_education(self, index: int, institution: str, area: str,
+                         study_type: str, gpa: str, courses: list,
+                         start_date: datetime.date,
+                         end_date: datetime.date=None):
+        if end_date:
+            end_date = end_date.isoformat()
+
+        self["education"][index].update({"institution": institution,
+                                         "area": area,
+                                         "studyType": study_type,
+                                         "gpa": gpa,
+                                         "startDate": start_date.isoformat(),
+                                         "endDate": end_date,
+                                         "courses": courses})
+
 
     # Award section
     def add_award(self, title: str, date: str, awarder: str, summary: str):
