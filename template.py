@@ -158,14 +158,21 @@ class Resume(collections.UserDict):
 
 
     # Award section
-    def add_award(self, title: str, date: str, awarder: str, summary: str):
+    def add_award(self, title: str, date: datetime.date, awarder: str, summary: str):
         self["awards"].append({"title": title,
                                "date": date.isoformat(),
                                "awarder": awarder,
                                "summary": summary})
 
-    def remove_award(self, index):
+    def remove_award(self, index: int):
         del self["awards"][index]
+
+    def update_award(self, index: int, title: str, date: datetime.date, awarder: str,
+                     summary: str):
+        self["awards"][index].update({"title": title,
+                                      "date": date.isoformat(),
+                                      "awarder": awarder,
+                                      "summary": summary})
 
     # Publication section
     def add_publication(self, name: str, publisher: str,
