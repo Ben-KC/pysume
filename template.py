@@ -105,6 +105,18 @@ class Resume(collections.UserDict):
     def remove_volunteer(self, index: int):
         del self["volunteer"][index]
 
+    def update_volunteer(self, index: int, organization: str, position: str,
+                         website: str, summary: str, highlights: list,
+                         start_date: datetime.date,
+                         end_date: datetime.date=None):
+        self["volunteer"][index].update({"organization": organization,
+                                         "position": position,
+                                         "website": website,
+                                         "startDate": start_date.isoformat(),
+                                         "endDate": end_date,
+                                         "summary": summary,
+                                         "highlights": highlights})
+
     # Education section
     def add_education(self, instution: str, area: str, study_type: str,
                       gpa: str, courses: list, start_date: datetime.date,
