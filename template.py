@@ -205,6 +205,11 @@ class Resume(collections.UserDict):
     def remove_skill(self, index: int):
         del self["skills"][index]
 
+    def update_skill(self, index: int, name: str, level: str, keywords: list):
+        self["skills"][index].update({"name": name,
+                               "level": level,
+                               "keywords": keywords})
+
     # Language section
     def add_language(self, language: str, fluency: str):
         self["languages"].append({"language": language,
