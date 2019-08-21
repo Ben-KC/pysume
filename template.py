@@ -229,6 +229,9 @@ class Resume(collections.UserDict):
     def remove_interest(self, index: int):
         del self["interests"][index]
 
+    def update_interest(self, index: int, name: str, keywords: list):
+        self["interests"][index].update({"name": name,
+                                         "keywords": keywords})
     # Reference section
     def add_reference(self, name: str, reference: str):
         self["references"].append({"name": name,
