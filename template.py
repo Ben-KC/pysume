@@ -30,6 +30,7 @@ class Resume(collections.UserDict):
                   "publications", "skills", "languages", "interests",
                   "references"]
     
+    # File I/O
     def open_from_file(self, location: str):
         with open(location, 'r') as res:
             resume = json.load(res)
@@ -41,6 +42,7 @@ class Resume(collections.UserDict):
         with open(self.location, 'w') as out:
             out.write(json.JSONEncoder().encode(self.data))
 
+    # Work section
     def add_work(self, company: str, position: str, website: str,
                  summary: str, highlights: list, start_date: datetime.date,
                  end_date: datetime.date=None):
@@ -58,6 +60,7 @@ class Resume(collections.UserDict):
     def remove_work(self, index: int):
         del self["work"][index]
 
+    # Profile section    
     def add_profile(self, network: str, username: str, url: str):
         self["basics"]["profiles"].append({"network": network,
                                            "username": username,
@@ -72,6 +75,7 @@ class Resume(collections.UserDict):
                                                   "username": username,
                                                   "url": url})
 
+    # Volunteer section
     def add_volunteer(self, organization: str, position: str, website: str,
                       summary: str, highlights: list,
                       start_date: datetime.date, 
@@ -90,6 +94,7 @@ class Resume(collections.UserDict):
     def remove_volunteer(self, index: int):
         del self["volunteer"][index]
 
+    # Education section
     def add_education(self, instution: str, area: str, study_type: str,
                       gpa: str, courses: list, start_date: datetime.date,
                       end_date: datetime.date=None):
@@ -107,6 +112,7 @@ class Resume(collections.UserDict):
     def remove_education(self, index: int):
         del self["education"][index]
 
+    # Award section
     def add_award(self, title: str, date: str, awarder: str, summary: str):
         self["awards"].append({"title": title,
                                "date": date.isoformat(),
@@ -116,6 +122,7 @@ class Resume(collections.UserDict):
     def remove_award(self, index):
         del self["awards"][index]
 
+    # Publication section
     def add_publication(self, name: str, publisher: str,
                         release_date: datetime.date, website: str,
                         summary: str):
@@ -128,6 +135,7 @@ class Resume(collections.UserDict):
     def remove_publication(self, index):
         del self["publications"][index]
 
+    # Skill section
     def add_skill(self, name: str, level: str, keywords: list):
         self["skills"].append({"name": name,
                                "level": level,
@@ -136,6 +144,7 @@ class Resume(collections.UserDict):
     def remove_skill(self, index):
         del self["skills"][index]
 
+    # Language section
     def add_language(self, language: str, fluency: str):
         self["languages"].append({"language": language,
                                   "fluency": fluency})
@@ -143,6 +152,7 @@ class Resume(collections.UserDict):
     def remove_language(self, index):
         del self["languages"][index]
 
+    # Interest section
     def add_interest(self, name: str, keywords: list):
         self["interests"].append({"name": name,
                                   "keywords": keywords})
@@ -150,6 +160,7 @@ class Resume(collections.UserDict):
     def remove_interest(self, index):
         del self["interests"][index]
 
+    # Reference section
     def add_reference(self, name: str, reference: str):
         self["references"].append({"name": name,
                                    "reference": reference})
