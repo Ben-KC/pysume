@@ -184,7 +184,7 @@ class Resume(collections.UserDict):
                                      "website": website,
                                      "summary": summary})
 
-    def remove_publication(self, index):
+    def remove_publication(self, index: int):
         del self["publications"][index]
 
     # Skill section
@@ -193,7 +193,7 @@ class Resume(collections.UserDict):
                                "level": level,
                                "keywords": keywords})
 
-    def remove_skill(self, index):
+    def remove_skill(self, index: int):
         del self["skills"][index]
 
     # Language section
@@ -201,7 +201,7 @@ class Resume(collections.UserDict):
         self["languages"].append({"language": language,
                                   "fluency": fluency})
 
-    def remove_language(self, index):
+    def remove_language(self, index: int):
         del self["languages"][index]
 
     # Interest section
@@ -209,7 +209,7 @@ class Resume(collections.UserDict):
         self["interests"].append({"name": name,
                                   "keywords": keywords})
 
-    def remove_interest(self, index):
+    def remove_interest(self, index: int):
         del self["interests"][index]
 
     # Reference section
@@ -217,5 +217,5 @@ class Resume(collections.UserDict):
         self["references"].append({"name": name,
                                    "reference": reference})
 
-    def remove_reference(self, index):
+    def remove_reference(self, index: int):
         del self["references"][index]
