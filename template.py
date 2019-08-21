@@ -60,6 +60,17 @@ class Resume(collections.UserDict):
     def remove_work(self, index: int):
         del self["work"][index]
 
+    def update_work(self, index: int, company: str, position: str,
+                    website: str, summary: str, highlights: list,
+                    start_date: datetime.date, end_date: datetime.date):
+        self["work"][index].update({"company": company,
+                                    "position": position,
+                                    "website": website,
+                                    "startDate": start_date.isoformat(),
+                                    "endDate": end_date,
+                                    "summary": summary,
+                                    "highlights": highlights})
+
     # Profile section    
     def add_profile(self, network: str, username: str, url: str):
         self["basics"]["profiles"].append({"network": network,
