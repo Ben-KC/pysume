@@ -66,6 +66,12 @@ class Resume(collections.UserDict):
     def remove_profile(self, index: int):
         del self["basics"]["profiles"][index]
 
+    def update_profile(self, index: int, network: str,
+                       username: str, url: str):
+        self["basics"]["profiles"][index].update({"network": network,
+                                                  "username": username,
+                                                  "url": url})
+
     def add_volunteer(self, organization: str, position: str, website: str,
                       summary: str, highlights: list,
                       start_date: datetime.date, 
