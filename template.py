@@ -62,7 +62,10 @@ class Resume(collections.UserDict):
 
     def update_work(self, index: int, company: str, position: str,
                     website: str, summary: str, highlights: list,
-                    start_date: datetime.date, end_date: datetime.date):
+                    start_date: datetime.date, end_date: datetime.date=None):
+        if end_date:
+            end_date = end_date.isoformat()
+
         self["work"][index].update({"company": company,
                                     "position": position,
                                     "website": website,
@@ -109,6 +112,9 @@ class Resume(collections.UserDict):
                          website: str, summary: str, highlights: list,
                          start_date: datetime.date,
                          end_date: datetime.date=None):
+        if end_date:
+            end_date = end_date.isoformat()
+
         self["volunteer"][index].update({"organization": organization,
                                          "position": position,
                                          "website": website,
