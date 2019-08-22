@@ -166,6 +166,27 @@ class Resume(collections.UserDict):
                                "website": website,
                                "summary": summary})
 
+    def update_location(self, address: str, postal_code: str, city: str,
+                        country_code: str, region: str) -> None:
+        """Updates the location information
+
+        Returns: None
+
+        Arguments:
+        ---
+        address - string containing the street address
+        postal_code - string containing the postal/zip code
+        city - string containing the city name
+        country_code - string containing the country code (ex: 'US')
+        region - string containing the name of the region or state
+        """
+
+        self["basics"]["location"].update({"address": address,
+                                           "postalCode": postal_code,
+                                           "city": city,
+                                           "countryCode": country_code,
+                                           "region": region})
+
     def add_profile(self, network: str, username: str, url: str) -> None:
         """Adds a new entry to the profile list
         
