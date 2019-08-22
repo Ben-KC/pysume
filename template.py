@@ -137,6 +137,81 @@ class Resume(collections.UserDict):
             out.write(json.JSONEncoder().encode(self.data))
 
 
+    # Basics section
+    def update_basics(self, name: str, label: str, picture: str, email: str,
+                      phone: str, website: str, summary: str) -> None:
+        """Updates the basic information
+
+        Updates all of the resume's basic information, with the exception of 
+        location and social media profiles
+
+        Returns: None
+
+        Arguments:
+        ---
+        name - string containing the applicant's name
+        label - string containing the applicant's title
+        picture string containing the location of the applicant's photo
+        email - string containing the applicant's email address
+        phone - string containing the applicant's phone number
+        website - string containing the url of the applicant's website
+        summary - string containing a description of the applicant
+        """
+
+        self["basics"].update({"name": name,
+                               "label": label,
+                               "picture": picture,
+                               "email": email,
+                               "phone": phone,
+                               "website": website,
+                               "summary": summary})
+
+    def add_profile(self, network: str, username: str, url: str) -> None:
+        """Adds a new entry to the profile list
+        
+        Returns: None
+
+        Arguments:
+        ---
+        network - string containing the name of the social network
+        username - string containing the username
+        url - string containing the network's url
+        """
+
+        self["basics"]["profiles"].append({"network": network,
+                                           "username": username,
+                                           "url": url})
+
+    def remove_profile(self, index: int) -> None:
+        """Removes the specified profile entry
+
+        Returns: None
+
+        Arguments:
+        ---
+        index - integer indicating which profile entry is to be removed
+        """
+
+        del self["basics"]["profiles"][index]
+
+    def update_profile(self, index: int, network: str,
+                       username: str, url: str) -> None:
+        """Updates the specified profile entry
+        
+        Returns: None
+
+        Arguments:
+        ---
+        index - integer indicating which profile entry is to be updated
+        network - string containing the name of the social network
+        username - string containing the username
+        url - string containing the network's url
+        """
+        self["basics"]["profiles"][index].update({"network": network,
+                                                  "username": username,
+                                                  "url": url})
+
+
     # Work section
     def add_work(self, company: str, position: str, website: str,
                  summary: str, highlights: list, start_date: datetime.date,
@@ -215,53 +290,6 @@ class Resume(collections.UserDict):
                                     "endDate": end_date,
                                     "summary": summary,
                                     "highlights": highlights})
-
-
-    # Profile section    
-    def add_profile(self, network: str, username: str, url: str) -> None:
-        """Adds a new entry to the profile list
-        
-        Returns: None
-
-        Arguments:
-        ---
-        network - string containing the name of the social network
-        username - string containing the username
-        url - string containing the network's url
-        """
-
-        self["basics"]["profiles"].append({"network": network,
-                                           "username": username,
-                                           "url": url})
-
-    def remove_profile(self, index: int) -> None:
-        """Removes the specified profile entry
-
-        Returns: None
-
-        Arguments:
-        ---
-        index - integer indicating which profile entry is to be removed
-        """
-
-        del self["basics"]["profiles"][index]
-
-    def update_profile(self, index: int, network: str,
-                       username: str, url: str) -> None:
-        """Updates the specified profile entry
-        
-        Returns: None
-
-        Arguments:
-        ---
-        index - integer indicating which profile entry is to be updated
-        network - string containing the name of the social network
-        username - string containing the username
-        url - string containing the network's url
-        """
-        self["basics"]["profiles"][index].update({"network": network,
-                                                  "username": username,
-                                                  "url": url})
 
 
     # Volunteer section
