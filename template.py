@@ -117,14 +117,12 @@ class Resume(collections.UserDict):
         location - string containing the url from which to open
         """
 
-        # TODO: set self.location (also, consider calling this if only
-        #       location is set in the constructor)
         with open(location, 'r') as res:
             resume = json.load(res)
 
-        # TODO: can I not just set the whole thing equal to the loaded json?
-        for category in self.categories:
-            self[category] = resume[category]
+        self.data.update(resume)
+
+        self.location = location
 
     def save(self) -> None:
         """Writes the Resume instance to a json file
